@@ -45,7 +45,7 @@ RUN ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose the port
-EXPOSE 80
+EXPOSE 8080
 
 # Start Supervisor (which will start both Nginx and PHP-FPM)
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
