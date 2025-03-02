@@ -1,13 +1,28 @@
 services:
   - type: web
     name: laravel-app
-    env: php
-    buildCommand: composer install --no-interaction --optimize-autoloader && npm ci && npm run build && php artisan config:cache
-    startCommand: heroku-php-apache2 public/
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /
     envVars:
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
         value: false
-      - key: APP_KEY
-        generateValue: true
+      - key: DB_CONNECTION
+        value: postgres
+      - key: DB_HOST
+        value: dpg-cv262tt2ng1s738mu8j0-a
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: social_db_obeg
+      - key: DB_USERNAME
+        value: social_db_obeg_user
+      - key: DB_PASSWORD
+        sync: rTEZ4EE6C2Sh68j1U1kqv9b1SaJqf00s # This will sync with the database password from Render
+
+databases:
+  - name: laravel-db
+    plan: free
