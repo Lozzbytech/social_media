@@ -11,7 +11,7 @@ services:
       - key: APP_DEBUG
         value: false
       - key: DB_CONNECTION
-        value: postgres
+        value: pgsql
       - key: DB_HOST
         value: dpg-cv262tt2ng1s738mu8j0-a
       - key: DB_PORT
