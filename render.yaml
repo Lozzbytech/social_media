@@ -1,14 +1,13 @@
 services:
   - type: web
     name: laravel-app
-    env: docker
-    dockerfilePath: ./Dockerfile
-    plan: free
-    healthCheckPath: /
+    env: php
+    buildCommand: composer install --no-interaction --optimize-autoloader && npm ci && npm run build && php artisan config:cache
+    startCommand: heroku-php-apache2 public/
     envVars:
-      - key: APP_KEY
-        generateValue: true
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
         value: false
+      - key: APP_KEY
+        generateValue: true
